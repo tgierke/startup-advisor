@@ -3,6 +3,7 @@ import Sidebar from './components/Sidebar'
 import SuggestionChips from './components/SuggestionChips'
 import PersonaCard, { PERSONAS } from './components/PersonaCard'
 import SessionHistory from './components/SessionHistory'
+import ExportReport from './components/ExportReport'
 
 const PROFILE_KEY = 'sap_personal_profile'
 const RESEARCH_KEY = 'sap_research_context'
@@ -147,7 +148,7 @@ export default function App() {
         <div className="main-header">
           <h1>Startup Advisory Panel</h1>
           <div className="header-actions">
-            {/* ExportReport button will be added in Task 9 */}
+            <ExportReport sessionEntries={sessionEntries} />
             <button className="btn btn-ghost" onClick={startNewSession}>
               New session
             </button>
