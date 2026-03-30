@@ -1,10 +1,10 @@
 const CHIPS = [
-  "What does the founder memo not say that it should?",
-  "Which GTM motion gives the best shot at 100 families in 6 months?",
-  "What is the most likely way this fails?",
-  "Is the competitive window real or a narrative device?",
-  "What should I know before joining without a salary?",
-  "What would need to be true for the seed round to close on time?",
+  "What is the most likely way this startup fails in the next 18 months?",
+  "Is this the right team to win this specific market — and what's missing?",
+  "What does this company need to prove in the next 12–18 months to raise its next round, and how realistic is that runway?",
+  "Where does the company's story about its market not match reality?",
+  "What would have to be true for this to be a career-defining move for me personally?",
+  "What is my realistic downside if this fails in 18 months, and am I actually prepared for it?",
 ]
 
 export default function SuggestionChips({ onSelect }) {
