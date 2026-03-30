@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useRef } from 'react'
 import Sidebar from './components/Sidebar'
 import SuggestionChips from './components/SuggestionChips'
 import PersonaCard, { PERSONAS } from './components/PersonaCard'
@@ -62,6 +62,7 @@ export default function App() {
   const [statuses, setStatuses] = useState(IDLE_STATUSES)
   const [responses, setResponses] = useState(IDLE_RESPONSES)
   const [isAsking, setIsAsking] = useState(false)
+  const isAskingRef = useRef(false)
 
   function saveSession(entries) {
     setSessionEntries(entries)
@@ -91,21 +92,26 @@ export default function App() {
 
   const askPanel = useCallback(async (overrideQuestion) => {
     const trimmed = (overrideQuestion || question).trim()
-    if (!trimmed || isAsking) return
-
+    if (!trimmed || isAskingRef.current) return
+    isAskingRef.current = true
     setIsAsking(true)
-    setStatuses(Object.fromEntries(PERSONAS.map(p => [p.id, 'loading'])))
-    setResponses(IDLE_RESPONSES)
 
-    const userMessage = `Context:\n${researchContext || 'None provided.'}\n\nPersonal profile:\n${profileToText(profile)}\n\n---\n\nQuestion: ${trimmed}`
+    try {
+      setStatuses(Object.fromEntries(PERSONAS.map(p => [p.id, 'loading'])))
+      setResponses(IDLE_RESPONSES)
 
-    const results = await Promise.all(
-      PERSONAS.map(persona => askPersona(persona, userMessage))
-    )
+      const userMessage = `Context:\n${researchContext || 'None provided.'}\n\nPersonal profile:\n${profileToText(profile)}\n\n---\n\nQuestion: ${trimmed}`
 
-    const entry = { question: trimmed, responses: results.filter(r => r.text) }
-    saveSession([...sessionEntries, entry])
-    setIsAsking(false)
+      const results = await Promise.all(
+        PERSONAS.map(persona => askPersona(persona, userMessage))
+      )
+
+      const entry = { question: trimmed, responses: results.filter(r => r.text) }
+      saveSession([...sessionEntries, entry])
+    } finally {
+      isAskingRef.current = false
+      setIsAsking(false)
+    }
   }, [question, isAsking, researchContext, profile, sessionEntries])
 
   async function retryPersona(persona) {
