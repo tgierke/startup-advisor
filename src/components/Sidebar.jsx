@@ -40,8 +40,9 @@ export default function Sidebar({ isOpen, researchContext, setResearchContext, p
         <h2>Personal profile</h2>
         {PROFILE_FIELDS.map(field => (
           <div className="profile-field" key={field.key}>
-            <label>{field.label}</label>
+            <label htmlFor={field.key}>{field.label}</label>
             <input
+              id={field.key}
               type="text"
               value={profile[field.key] || ''}
               onChange={e => handleProfileChange(field.key, e.target.value)}
