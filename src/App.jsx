@@ -113,7 +113,7 @@ export default function App() {
       isAskingRef.current = false
       setIsAsking(false)
     }
-  }, [question, isAsking, researchContext, profile, sessionEntries])
+  }, [question, researchContext, profile, sessionEntries])
 
   async function retryPersona(persona) {
     const lastEntry = sessionEntries[sessionEntries.length - 1]

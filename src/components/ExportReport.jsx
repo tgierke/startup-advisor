@@ -84,6 +84,8 @@ function buildReportHtml(summaryText, sessionEntries) {
     h2 { font-size: 18px; font-weight: 700; margin-top: 32px; margin-bottom: 12px; padding-bottom: 6px; border-bottom: 1px solid #eee; }
     h3 { font-size: 15px; font-weight: 600; margin-top: 20px; margin-bottom: 8px; }
     p { margin-bottom: 12px; color: #333; }
+    .summary { margin-bottom: 24px; }
+    .summary p { margin-bottom: 12px; color: #333; }
     ul { padding-left: 20px; margin-bottom: 12px; }
     li { margin-bottom: 6px; color: #333; }
     .meta { color: #888; font-size: 13px; margin-bottom: 40px; }
@@ -94,7 +96,7 @@ function buildReportHtml(summaryText, sessionEntries) {
 <body>
   <h1>Startup Advisory Panel</h1>
   <div class="meta">Decision Brief &middot; ${date}</div>
-  <p>${formatted}</p>
+  <div class="summary">${formatted}</div>
   <div class="transcript-title">Full Session Transcript</div>
   ${transcript}
 </body>

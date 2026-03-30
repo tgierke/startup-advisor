@@ -6,8 +6,8 @@ export default function SessionHistory({ entries = [] }) {
   return (
     <div className="session-history">
       <h2>Session history</h2>
-      {entries.map((entry) => (
-        <div className="history-entry" key={entry.question}>
+      {entries.map((entry, i) => (
+        <div className="history-entry" key={i}>
           <div className="history-question">Q: {entry.question}</div>
           <div className="history-responses">
             {PERSONAS.map(persona => {
