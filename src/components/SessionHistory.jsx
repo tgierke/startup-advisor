@@ -1,13 +1,13 @@
 import { PERSONAS } from './PersonaCard'
 
-export default function SessionHistory({ entries }) {
+export default function SessionHistory({ entries = [] }) {
   if (entries.length === 0) return null
 
   return (
     <div className="session-history">
       <h2>Session history</h2>
-      {entries.map((entry, i) => (
-        <div className="history-entry" key={i}>
+      {entries.map((entry) => (
+        <div className="history-entry" key={entry.question}>
           <div className="history-question">Q: {entry.question}</div>
           <div className="history-responses">
             {PERSONAS.map(persona => {

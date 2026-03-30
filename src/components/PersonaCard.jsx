@@ -74,6 +74,10 @@ export default function PersonaCard({ persona, status, response, onRetry }) {
             <button className="btn btn-ghost" onClick={onRetry}>Retry</button>
           </div>
         )}
+
+        {!['idle', 'loading', 'done', 'error'].includes(status) && (
+          <p className="persona-empty">Waiting...</p>
+        )}
       </div>
     </div>
   )
