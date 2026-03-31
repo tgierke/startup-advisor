@@ -24,8 +24,7 @@ function profileToText(profile) {
     walkingAway: 'Walking away from',
     family: 'Family situation',
     careerStage: 'Career stage',
-    fearJoining: 'Fear about joining',
-    fearNotJoining: 'Fear about not joining',
+    additionalContext: 'Additional context',
   }
   return Object.entries(labels)
     .map(([k, label]) => profile[k] ? `${label}: ${profile[k]}` : null)

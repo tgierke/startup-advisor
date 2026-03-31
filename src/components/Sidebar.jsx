@@ -8,8 +8,6 @@ const PROFILE_FIELDS = [
   { key: 'walkingAway', label: "What I'd be walking away from" },
   { key: 'family', label: 'Family situation' },
   { key: 'careerStage', label: 'Career stage' },
-  { key: 'fearJoining', label: 'Biggest fear about joining' },
-  { key: 'fearNotJoining', label: 'Biggest fear about not joining' },
 ]
 
 export default function Sidebar({ isOpen, researchContext, setResearchContext, profile, setProfile }) {
@@ -50,6 +48,16 @@ export default function Sidebar({ isOpen, researchContext, setResearchContext, p
             />
           </div>
         ))}
+        <div className="profile-field">
+          <label htmlFor="additionalContext">Additional context</label>
+          <textarea
+            id="additionalContext"
+            rows={5}
+            value={profile.additionalContext || ''}
+            onChange={e => handleProfileChange('additionalContext', e.target.value)}
+            placeholder="Biggest fears, unique skill sets, personal constraints, or anything else that helps the advisors understand your perspective…"
+          />
+        </div>
       </div>
     </aside>
   )
